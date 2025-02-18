@@ -23,7 +23,10 @@ public class Controller {
     public void updateProdukt(int index, Produkt produkt) { produktService.update(index, produkt); }
     public void deleteProdukt(int index) { produktService.delete(index); }
 
-
+    public void addCharakter(Charakter charakter) { charakterService.add(charakter); }
+    public Charakter getCharakter(int index) { return charakterService.get(index); }
+    public void updateCharakter(int index, Charakter charakter) { charakterService.update(index, charakter); }
+    public void deleteCharakter(int index) { charakterService.delete(index); }
 }
 
 //TODO STOP AICI COMMIT d.

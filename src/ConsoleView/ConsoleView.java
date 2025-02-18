@@ -42,6 +42,10 @@ public class ConsoleView {
                 case "2" -> viewProdukt();
                 case "3" -> updateProdukt();
                 case "4" -> deleteProdukt();
+                case "5" -> addCharakter();
+                case "6" -> viewCharakter();
+                case "7" -> updateCharakter();
+                case "8" -> deleteCharakter();
 
                 case "0" -> {
                     System.out.println("Beenden...");
@@ -106,6 +110,61 @@ public class ConsoleView {
         }
         controller.deleteProdukt(index);
         System.out.println("Produkt erfolgreich gelöscht!");
+    }
+
+    private void addCharakter() {
+        System.out.print("Charakter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Herkunftsdorf: ");
+        String dorf = scanner.nextLine();
+
+        Charakter charakter = new Charakter(0, name, dorf);
+        controller.addCharakter(charakter);
+        System.out.println("Charakter erfolgreich hinzugefügt!");
+    }
+
+    private void viewCharakter() {
+        System.out.print("Charakter Index: ");
+        int index = getValidInt();
+        Charakter charakter = controller.getCharakter(index);
+        if (charakter != null) {
+            System.out.println(charakter);
+        } else {
+            System.out.println("Charakter nicht gefunden.");
+        }
+    }
+
+    private void updateCharakter() {
+        System.out.print("Charakter Index: ");
+        int index = getValidInt();
+        Charakter charakter = controller.getCharakter(index);
+
+        if (charakter == null) {
+            System.out.println("Charakter nicht gefunden.");
+            return;
+        }
+
+        System.out.print("Neuer Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Neues Herkunftsdorf: ");
+        String dorf = scanner.nextLine();
+
+        Charakter updatedCharakter = new Charakter(charakter.getId(), name, dorf);
+        updatedCharakter.getGekaufteProdukte().addAll(charakter.getGekaufteProdukte());
+
+        controller.updateCharakter(index, updatedCharakter);
+        System.out.println("Charakter erfolgreich aktualisiert!");
+    }
+
+    private void deleteCharakter() {
+        System.out.print("Charakter Index: ");
+        int index = getValidInt();
+        if (controller.getCharakter(index) == null) {
+            System.out.println("Charakter nicht gefunden.");
+            return;
+        }
+        controller.deleteCharakter(index);
+        System.out.println("Charakter erfolgreich gelöscht!");
     }
     private int getValidInt() {
         while (true) {
