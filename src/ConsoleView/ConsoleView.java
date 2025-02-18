@@ -11,7 +11,7 @@ import Repository.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//todo getAll for both i added now
 public class ConsoleView {
     private final Controller controller;
     private final Scanner scanner = new Scanner(System.in);
@@ -32,6 +32,11 @@ public class ConsoleView {
                 6 - Charakter anzeigen
                 7 - Charakter bearbeiten
                 8 - Charakter löschen
+                
+                le am adaugat dupa pentru a fi mai usor sa verif
+                9 - Afisare toate produsele
+                10 - Afisare toti characterele
+                
                 0 - Beenden
                 """);
 
@@ -46,6 +51,8 @@ public class ConsoleView {
                 case "6" -> viewCharakter();
                 case "7" -> updateCharakter();
                 case "8" -> deleteCharakter();
+                case "9" -> getAllProdukte();
+                case "10" -> getAllCharakters();
 
                 case "0" -> {
                     System.out.println("Beenden...");
@@ -184,5 +191,19 @@ public class ConsoleView {
                 System.out.print("Ungültige Eingabe. Bitte eine gültige Zahl eingeben: ");
             }
         }
+    }
+
+
+
+
+    //todo adaugate extra
+    private void getAllProdukte() {
+        List<Produkt> produkte = controller.getAllProdukte();
+        produkte.forEach(System.out::println);
+    }
+
+    private void getAllCharakters() {
+        List<Charakter> charaktere = controller.getAllCharakters();
+        charaktere.forEach(System.out::println);
     }
 }

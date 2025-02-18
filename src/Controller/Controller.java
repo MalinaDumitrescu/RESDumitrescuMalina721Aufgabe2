@@ -86,6 +86,17 @@ public class Controller {
      * @param index The index of the Charakter entity to delete.
      */
     public void deleteCharakter(int index) { charakterService.delete(index); }
+
+
+    //todo adaugate extra
+
+    public List<Produkt> getAllProdukte(){
+        return produktService.getAll();
+    }
+
+    public  List<Charakter> getAllCharakters(){
+        return charakterService.getAll();
+    }
 }
 
 //TODO STOP AICI COMMIT d.
